@@ -1674,7 +1674,7 @@ tag AccessKey
 	def render
 		<self>
 			<.video-container>
-				<video$key src=key preload="auto" @oncanplay=(do $key.currentTime = 0)> # poster=key-poster muted 
+				<video$key src=key preload="auto" @oncanplay=(do $key.playbackRate = 10; $key.play!)> # poster=key-poster muted $key.currentTime = 0
 			<.content>
 				<h3$keyTitle> 'Access Key'
 					css
