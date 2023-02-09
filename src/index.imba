@@ -37,11 +37,11 @@ import mask from './media/pioneer-program.svg'
 import THREE from 'three'
 import UAParser from 'ua-parser-js'
 
-import {Scroller, Zone} from './scroller'
-import {Dust} from './dust'
-import {Planet} from './planet'
-import {Play} from './play'
-import {MaskSVG} from './masksvg'
+import {Scroller, Zone} from './scroller.imba'
+import {Dust} from './dust.imba'
+import {Planet} from './planet.imba'
+import {Play} from './play.imba'
+import {MaskSVG} from './masksvg.imba'
 
 // @ts-ignore
 import spaceship1 from './media/spaceship1.webp'
@@ -1653,7 +1653,7 @@ tag AccessKey
 	visible
 
 	def scrollPlay
-		$key.currentTime = "{$key.duration * scroller.get('keyVideo')}"
+		$key.currentTime = $key.duration * scroller.get('keyVideo')
 		window.requestAnimationFrame(scrollPlay.bind(self)) if visible
 
 	def setup
