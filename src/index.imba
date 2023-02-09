@@ -1688,7 +1688,11 @@ tag KeyBurning
 	]
 
 	def mount
-		svg-path-size = ($keys-block-height.clientHeight - 128 * 2) / 2 - 40
+		window.addEventListener 'resize', do
+			svg-path-height = ($keys-block.clientHeight - 128 * 2) / 2 - 40
+			svg-path-width = ($keys-block.clientWidth) / 2 - 40
+		svg-path-height = ($keys-block.clientHeight - 128 * 2) / 2 - 40
+		svg-path-width = ($keys-block.clientWidth) / 2 - 40
 
 	def setup
 		scroller.add('burnMoveVideo',	self, 			{view: bottom, gap: (do 0),						height: (do screen.height), 		edge: top})
@@ -1947,19 +1951,21 @@ tag KeyBurning
 							origin: 50% 50%
 							transform: translateY({(1 - scroller.get('burnMoveVideo')) * -35}vh) scale({-0.2 * scroller.get('burnMoveVideo') + 1.2})
 						<Play .spaceship src=burning json=burningjson width=400 height=400 first=true ratio=scroller.get('burnPlayVideo')>
-					<$keys-block-height .keys>
+					<$keys-block .keys>
 						for key, idx in keys
 							<.key .in=scroller.get('burnKeysScale') id="key-height{idx}">
 								<.key-path>
-									<svg.burn-key viewBox="0 0 {svg-path-size || 0} {svg-path-size || 0}">
+									<svg.burn-key viewBox="0 0 {svg-path-width || 0} {svg-path-height || 0}">
 										css
-											s: {svg-path-size || 0}px
+											w: {svg-path-width || 0}px
+											h: {svg-path-height || 0}px
 											stroke-dashoffset: {scroller.get('burnKeysBurn') * -320}
-										<path d="M0,4 L0,{svg-path-size || 0} L{svg-path-size || 0},{svg-path-size || 0}">
-									<svg viewBox="0 0 {svg-path-size || 0} {svg-path-size || 0}">
+										<path d="M0,4 L0,{svg-path-height || 0} L{svg-path-width || 0},{svg-path-height || 0}">
+									<svg viewBox="0 0 {svg-path-width || 0} {svg-path-height || 0}">
 										css
-											s: {svg-path-size || 0}px
-										<path d="M0,4 L0,{svg-path-size || 0} L{svg-path-size || 0},{svg-path-size || 0}">
+											w: {svg-path-width || 0}px
+											h: {svg-path-height || 0}px
+										<path d="M0,4 L0,{svg-path-height || 0} L{svg-path-width || 0},{svg-path-height || 0}">
 								<.key-image>
 									<.corner>
 									<.corner>
