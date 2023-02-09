@@ -1268,7 +1268,7 @@ tag Prize
 				transform: translateY({(1 - scroller.get('prizeTag')) * 200}px)
 			<.section>
 				<.video-container>
-					<video$prizeVideo playsInline src=prize poster=prize-poster muted preload="auto" @loadedmetadata=(do $prizeVideo.currentTime = 0)>
+					<video$prizeVideo playsInline src=prize poster=prize-poster muted autoplay preload="auto" @loadedmetadata=(do $prizeVideo.currentTime = 0)>
 				<.content>
 					<.column>
 						<h3$prizeTitle> 'Prize'
