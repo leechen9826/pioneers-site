@@ -81,7 +81,7 @@ let screen =
 
 window.addEventListener 'resize', do
 	return if mobile
-	screen.height = mobile ? window.screen.height : window.innerHeight
+	screen.height = window.innerHeight
 	screen.width = window.innerWidth
 	imba.commit!
 

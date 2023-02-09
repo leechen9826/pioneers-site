@@ -1,2 +1,2 @@
-# main-site
- Main website of Elysium chain project. 
+# Pioneers Promo Site
+Website for Elysium Pioneer Program promotion.
