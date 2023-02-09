@@ -1021,7 +1021,7 @@ tag Strategy
 								-webkit-mask-image: linear-gradient(to right, rgba(255,255,255,1) {scroller.get('strategyQuote') * 150 - 50}%, rgba(255,255,255,0) {scroller.get('strategyQuote') * 150}%)
 				<.spaceship-box>
 					<.spaceship>
-						<video src=spaceship-strategy poster=spaceship-strategy-poster autoplay muted loop preload="metadata">
+						<video src=spaceship-strategy poster=spaceship-strategy-poster autoplay muted loop preload="auto">
 							css
 								transform: translateY({(0.5 - scroller.get('strategyVideo')) * (self.clientHeight / 2)}px)
 						<svg.circles>
@@ -1221,11 +1221,9 @@ tag Prize
 		scroller.enter 'prizeVideo', do
 			visible = true
 			window.requestAnimationFrame(scrollPlay.bind(self))
-			console.log 'enter'
 
 		scroller.leave 'prizeVideo', do
 			visible = false
-			console.log 'leave'
 
 	css self
 		zi: 1000
@@ -1270,7 +1268,7 @@ tag Prize
 				transform: translateY({(1 - scroller.get('prizeTag')) * 200}px)
 			<.section>
 				<.video-container>
-					<video$prizeVideo playsInline src=prize poster=prize-poster preload="metadata" @loadedmetadata=(do $prizeVideo.currentTime = 0)>
+					<video$prizeVideo playsInline src=prize poster=prize-poster muted preload="auto" @loadedmetadata=(do $prizeVideo.currentTime = 0)>
 				<.content>
 					<.column>
 						<h3$prizeTitle> 'Prize'
@@ -1669,16 +1667,14 @@ tag AccessKey
 		scroller.enter 'keyVideo', do
 			visible = true
 			window.requestAnimationFrame(scrollPlay.bind(self))
-			console.log 'enter'
 
 		scroller.leave 'keyVideo', do
 			visible = false
-			console.log 'leave'
 
 	def render
 		<self>
 			<.video-container>
-				<video$key playsInline src=key poster=key-poster preload="metadata" @loadedmetadata=(do $key.currentTime = 0)>
+				<video$key playsInline src=key poster=key-poster muted preload="auto" @loadedmetadata=(do $key.currentTime = 0)>
 			<.content>
 				<h3$keyTitle> 'Access Key'
 					css
