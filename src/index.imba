@@ -1,12 +1,5 @@
 import {Discord, Twitter, Bracket} from './icons.imba'
-// @ts-ignore
-import key from './media/access-keys.mp4'
-// @ts-ignore
-import key-poster from './media/access-keys.webp'
-// @ts-ignore
-import burn from './media/spaceship-burning.webm'
-# // @ts-ignore
-# import burn-poster from './media/spaceship-burning.webp'
+
 // @ts-ignore
 import spaceship-strategy from './media/spaceship-strategy.webm'
 // @ts-ignore
@@ -27,10 +20,6 @@ import capsule from './media/loot-capsule.webp'
 import astonit from './media/astonit.webp'
 // @ts-ignore
 import energon from './media/energon.webp'
-// @ts-ignore
-import prize from './media/prize-coins.mp4'
-// @ts-ignore
-import prize-poster from './media/prize-coins.webp'
 
 import mask from './media/pioneer-program.svg'
 
@@ -67,6 +56,12 @@ import prelaunchjson from './json/prelaunch.json'
 // @ts-ignore
 import burning from './media/spaceship-burning.webp'
 import burningjson from './json/spaceship-burning.json'
+// @ts-ignore
+import prize from './media/prize.webp'
+import prizejson from './json/prize.json'
+// @ts-ignore
+import accesskey from './media/access-key.webp'
+import accesskeyjson from './json/access-key.json'
 
 import clouds from './media/cloud10.png'
 
@@ -1199,12 +1194,6 @@ tag Profit
 								<img src='./media/profit-asset.svg'>
 
 tag Prize
-	visible
-
-	def scrollPlay
-		$prizeVideo.currentTime = $prizeVideo.duration * scroller.get('prizeVideo')
-		window.requestAnimationFrame(scrollPlay.bind(self)) if visible
-
 	def setup
 		scroller.add('prizeTag',		self,			{view: bottom, gap: (do 0),							height: (do screen.height), 			edge: top})
 		scroller.add('prizeTitle',		$prizeTitle,	{view: bottom, gap: (do 0), 						height: (do 200), 					edge: top})
@@ -1218,13 +1207,6 @@ tag Prize
 
 		scroller.add('prizeVideo',		self,			{view: bottom, gap: (do screen.height * .9), 		height: (do screen.height * 1.5), edge: top})
 
-		scroller.enter 'prizeVideo', do
-			visible = true
-			window.requestAnimationFrame(scrollPlay.bind(self))
-
-		scroller.leave 'prizeVideo', do
-			visible = false
-
 	css self
 		zi: 1000
 		pos: relative
@@ -1233,13 +1215,6 @@ tag Prize
 			d: flex jc: end
 			pos: absolute b: 0 l: 0 r: 0
 			w: 100%
-			bg: #120519
-			mix-blend-mode: lighten
-			video
-				d: block
-				w: 100% h: auto
-				object-fit: cover
-				mix-blend-mode: lighten
 		.section
 			pos: sticky t: 40px !@640: 40px !@420: 20px
 			of: hidden
@@ -1266,9 +1241,12 @@ tag Prize
 			css
 				h: {screen.height * 2}px
 				transform: translateY({(1 - scroller.get('prizeTag')) * 200}px)
-			<.section>
+			<$prizesection .section>
 				<.video-container>
-					<video$prizeVideo src=prize preload="auto" @oncanplay=(do $prizeVideo.currentTime = 0)> # poster=prize-poster playsInline muted 
+					<Play .coins src=prize json=prizejson width=1280 height=720 first=true ratio=scroller.get('prizeVideo')>
+						css
+							w: {$prizesection.clientWidth}px
+							h: {$prizesection.clientWidth * 720 / 1280}px
 				<.content>
 					<.column>
 						<h3$prizeTitle> 'Prize'
@@ -1533,23 +1511,22 @@ tag AccessKey
 		.video-container
 			pos: relative
 			d: flex jc: center ai: start
-			bg: rgba(18, 6, 25, 1)
-			w: 100% h: 200vh
+			w: 100% h: 190vh
 			mt: -75vh !@420: -50vh
 			mb: -30vh
-			&:before
-				zi: 100
-				content: ''
-				pos: absolute l: 0 t: -1px r: 0 h: 400px
-				bg: linear-gradient(to bottom, rgba(18, 5, 25, 1), rgba(18, 5, 25, 0))
-			video
-				d: block
+			.canvas-box
 				pos: sticky t: 0
 				w: 100vw h: 100vh
-				# @!640: >1200px 100vw
+			.bg-gradient
+				zi: 0
+				pos: absolute l: 0 t: 0 r: 0 b: 0
+				w: 100% h: 100%
+			.key-canvas
+				zi: 1
+				pos: relative
+				d: block
+				w: 100vw h: 100vh
 				object-fit: cover
-				mix-blend-mode: lighten
-				-webkit-mix-blend-mode: lighten
 		.content
 			pos: relative
 			w: calc(100% - 80px) <800px
@@ -1648,14 +1625,9 @@ tag AccessKey
 				@keyframes btn-opacity-out
 					from o: 1
 
-	visible
-	play = 'true'
-	def scrollPlay
-		$key.currentTime = $key.duration * scroller.get('keyVideo')
-		window.requestAnimationFrame(scrollPlay.bind(self)) if visible
-
 	def setup
 		scroller.add('keyVideo',	self, 			{view: bottom, gap: (do screen.height / 6), height: (do screen.height), edge: top})
+		scroller.add('keyGradient',	self, 			{view: bottom, gap: (do screen.height / 6), height: (do screen.height - 50), edge: top , from: -180, to: -10})
 		scroller.add('keyTitle',	$keyTitle,		{view: bottom, gap: (do 0), height: (do 200), edge: top})
 		scroller.add('keyText',		$keyText,		{view: bottom, gap: (do 0), height: (do 200), edge: top})
 		scroller.add('keyA',		$keyA,			{view: bottom, gap: (do 0), height: (do 0), edge: top})
@@ -1664,19 +1636,15 @@ tag AccessKey
 		scroller.add('keyD',		$keyD,			{view: bottom, gap: (do 150), height: (do 0), edge: top})
 		scroller.add('keyButton',	$keyButton,		{view: bottom, gap: (do 0), height: (do 0), edge: bottom})
 
-		scroller.enter 'keyVideo', do
-			visible = true
-			window.requestAnimationFrame(scrollPlay.bind(self))
-
-		scroller.leave 'keyVideo', do
-			visible = false
-		
-
 	def render
 		<self>
-			
 			<.video-container>
-				<video$key src=key preload="auto" muted autoplay=play @oncanplaythrough=(do $key.autoplay=false)> # poster=key-poster muted $key.currentTime = 0
+				<.canvas-box>
+					<Play .key-canvas src=accesskey json=accesskeyjson width=1280 height=1280 first=true ratio=scroller.get('keyVideo')>
+					<.bg-gradient>
+						css
+							bg: linear-gradient({scroller.get('keyVideo') * 90}deg, #FE039A, #4E01FF)
+							mask-image: linear-gradient({scroller.get('keyGradient')}deg, rgba(255,255,255,0) 45%, rgba(255,255,255,1) 90%)
 			<.content>
 				<h3$keyTitle> 'Access Key'
 					css
