@@ -4,3 +4,4 @@ package-lock.json
 .firebaserc
 firebase.json
 dist
+.DS_Store

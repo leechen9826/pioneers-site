@@ -5,9 +5,8 @@
   "main": "src/index.imba",
   "scripts": {
     "dev": "imba serve src/index.imba",
-    "devs": "imba serve src/index.html",
-    "deploy": "imba build --esm --web --minify --no-sourcemap --production --bundle --base . src/index.html && firebase deploy",
-    "build": "imba build --esm --web --base . src/index.html",
+    "devs": "imba serve index.html",
+    "build": "imba build --esm --web --base . index.html",
     "preview": "npx http-server dist",
     "help": "imba build --help"
   },
@@ -15,15 +14,8 @@
     "type": "git",
     "url": "git+https://github.com/elysium-chain/pioneers-site.git"
   },
-  "keywords": [
-    "site",
-    "blockchain"
-  ],
   "author": "HeapVoid and 0p0int",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/elysium-chain/pioneers-site/issues"
-  },
   "homepage": "http://pioneers.elysium-chain.com/",
   "devDependencies": {
     "imba": "^2.0.0-alpha.226"
