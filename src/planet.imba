@@ -13,7 +13,6 @@ export tag Planet < canvas
 	opacity-speed = .005
 	visible
 	last = 0
-	windowheight = window.innerHeight
 	
 	# --------------------------------------------------------
 	def frame current
@@ -36,16 +35,16 @@ export tag Planet < canvas
 					ctx.globalAlpha = layer.opacity
 					ctx.drawImage($shine, - layer.size / 2, - layer.size / 2, layer.size, layer.size)
 					ctx.restore!
-			ctx.drawImage($planet, window.innerWidth / 2 - planet.width / 2, windowheight - planet.height, planet.width, planet.height)
+			ctx.drawImage($planet, window.innerWidth / 2 - planet.width / 2, height - planet.height, planet.width, planet.height)
 		
 	# --------------------------------------------------------
 	def resize
 		width = window.innerWidth
-		height = windowheight
-		planet.height = windowheight * 0.35
+		height = window.innerHeight
+		planet.height = height * 0.35
 		planet.width = planet.height * $planet.width / $planet.height
-		planet.center = 1.35 * windowheight
-		shine.min = 2 * (planet.center - windowheight + planet.height) + 150
+		planet.center = 1.35 * height
+		shine.min = 2 * (planet.center - height + planet.height) + 150
 		shine.max = 1.4 * shine.min
 		
 		for layer in layers
