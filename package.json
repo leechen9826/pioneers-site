@@ -5,6 +5,7 @@
   "main": "src/index.imba",
   "scripts": {
     "dev": "imba serve src/index.imba",
+    "devs": "imba serve src/index.html",
     "deploy": "imba build --esm --web --minify --no-sourcemap --production --bundle --base . src/index.html && firebase deploy",
     "build": "imba build --esm --web --base . src/index.html",
     "preview": "npx http-server dist",
@@ -25,6 +26,10 @@
   },
   "homepage": "http://pioneers.elysium-chain.com/",
   "devDependencies": {
-    "imba": "^2.0.0-alpha.225"
+    "imba": "^2.0.0-alpha.226"
+  },
+  "dependencies": {
+    "three": "^0.55.0",
+    "ua-parser-js": "^1.0.33"
   }
 }
