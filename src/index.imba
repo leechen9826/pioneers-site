@@ -1649,7 +1649,7 @@ tag AccessKey
 					from o: 1
 
 	visible
-
+	play = 'true'
 	def scrollPlay
 		$key.currentTime = $key.duration * scroller.get('keyVideo')
 		window.requestAnimationFrame(scrollPlay.bind(self)) if visible
@@ -1670,11 +1670,13 @@ tag AccessKey
 
 		scroller.leave 'keyVideo', do
 			visible = false
+		
 
 	def render
 		<self>
+			
 			<.video-container>
-				<video$key src=key preload="auto" @oncanplaythrough=(do $key.currentTime = 0)> # poster=key-poster muted $key.currentTime = 0
+				<video$key src=key preload="auto" muted autoplay=play @oncanplaythrough=(do $key.autoplay=false)> # poster=key-poster muted $key.currentTime = 0
 			<.content>
 				<h3$keyTitle> 'Access Key'
 					css
