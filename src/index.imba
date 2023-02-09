@@ -1268,7 +1268,7 @@ tag Prize
 				transform: translateY({(1 - scroller.get('prizeTag')) * 200}px)
 			<.section>
 				<.video-container>
-					<video$prizeVideo playsInline src=prize muted preload="auto" @loadedmetadata=(do $prizeVideo.currentTime = 0)> # poster=prize-poster 
+					<video$prizeVideo playsInline src=prize muted preload="auto" @oncanplay=(do $prizeVideo.currentTime = 0)> # poster=prize-poster 
 				<.content>
 					<.column>
 						<h3$prizeTitle> 'Prize'
@@ -1674,7 +1674,7 @@ tag AccessKey
 	def render
 		<self>
 			<.video-container>
-				<video$key src=key muted preload="auto" @loadedmetadata=(do $key.currentTime = 0)> # poster=key-poster
+				<video$key src=key muted preload="auto" @oncanplay=(do $key.currentTime = 0)> # poster=key-poster
 			<.content>
 				<h3$keyTitle> 'Access Key'
 					css
