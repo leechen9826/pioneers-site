@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "imba serve src/index.imba",
     "devs": "imba serve index.html",
-    "ibuild": "imba build --esm --web --base . index.html",
+    "devv": "vite",
+    "ibuild": "imba build index.html",
     "build": "vite build",
     "preview": "npx http-server dist",
     "help": "imba build --help"
