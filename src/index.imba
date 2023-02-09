@@ -269,7 +269,7 @@ tag IntroBack
 		<self>
 			<.darkness>
 			<img src='./media/intro-bg.webp' [h: {screen.height}px]>
-			<Planet.canvas windowheight=screen.height>
+			<Planet.canvas>
 			<Dust.canvas count=(mobile ? 50 : 100)>
 
 tag Intro
