@@ -979,6 +979,8 @@ tag Strategy
 						to transform: rotateZ(0deg)
 				video
 					zi: 101 w: 100% h: auto
+					# mix-blend-mode: screen
+					-webkit-mix-blend-mode: screen
 				img
 					zi: 100
 					pos: absolute
