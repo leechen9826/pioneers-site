@@ -96,7 +96,7 @@ css html
 		pos: relative
 		m: 0
 		bg: rgba(18, 5, 25, 1)
-		# scroll-behavior: smooth
+		scroll-behavior: smooth
 	h2
 		pos: relative
 		m: 0
@@ -246,8 +246,6 @@ tag IntroBack
 	css self
 		zi: 4
 		pos: absolute l: 0 t: 0 b: 0 r: 0
-		# w: 100%
-		# object-fit: cover
 		.darkness
 			zi: 800
 			pos: absolute l: 0 b: 0 r: 0
@@ -320,8 +318,6 @@ tag Intro
 				s: 100%
 				fill: white
 		.subtext
-			# zi: 1000
-			# pos: absolute b: 0 l: 0 r: 0
 			w: calc(100% - 80px) <960px !@420: calc(100% - 40px) <100%
 			p: 0 40px !@420: 0 20px
 			m: auto
@@ -338,13 +334,11 @@ tag Intro
 		.media
 			zi: 1000
 			pos: absolute l: 0 t: 0 r: 0 m: auto
-			# h: 500vh
 			&.disable
 				d: none
 				visibility: hidden
 			.media-box
 				pos: sticky t: 0
-				# b: 280px
 				ai: center
 				d: flex fld: column jc: space-between ai: stretch
 				h: calc(100vh - 40px - 10vh) !@420: calc(100vh - 20px - 15vh)
@@ -545,18 +539,13 @@ tag Spaceship
 		d: flex fld: column g: 40px !@420: 24px
 		bg: none
 		of: hidden
-		# pb: 50vh
 		&:before
 			content: ''
 			pos: absolute l: 0 t: 0 r: 0 b: 0
-			# bg: red
-			# bg: rgba(18, 5, 25, 1)
 		.content
 			g: 80px !@420: 40px
 			flw: wrap ai: start
-			# bg: rgba(18, 5, 25, 1)
 			.left
-				# fl: 1 1 min-content
 				d: flex ai: start fld: column g: 40px !@420: 24px jc: center
 				w: 100% <488px
 				.background
@@ -614,7 +603,7 @@ tag Spaceship
 
 	params = [
 		{icon: "./icons/engine.svg", text: 'Engine Efficiency determines the fuel consumption of your ship.'},
-		{icon: "./icons/inertia.svg", text: 'Inertia Retention determines how long the ship will fly without fuel.'}
+		{icon: "./icons/inertia.svg", text: 'Inertia Retention determines how far the ship will fly without fuel.'}
 	]
 	
 	def mount
@@ -2247,8 +2236,6 @@ tag Clouds
 			pos: sticky !@420: static t: 0
 			d: flex jc: center
 			of: hidden
-			# bg: rgba(18, 6, 25, 1)
-			# bg: #4E01FF
 			.spaceships
 				zi: 1000
 				h: 100vh w: 100%
@@ -2301,8 +2288,6 @@ tag Prelaunch
 		pos: relative
 		pb: 200px !@640: 80px
 		bg: #ffffff
-		# bg: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1) 200px)
-		# pt: 15vh
 		&:before
 			content: ''
 			pos: absolute
