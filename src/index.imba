@@ -26,6 +26,9 @@ import mask from './media/pioneer-program.svg'
 import THREE from 'three'
 import UAParser from 'ua-parser-js'
 
+// @ts-ignore
+import TexturBG from './media/texture_bg.webp'
+
 import {Scroller, Zone} from './scroller.imba'
 import {Dust} from './dust.imba'
 import {Planet} from './planet.imba'
