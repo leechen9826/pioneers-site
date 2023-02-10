@@ -23,7 +23,7 @@ import THREE from 'three'
 import UAParser from 'ua-parser-js'
 
 // @ts-ignore
-import TexturBG from './media/texture_bg.webp'
+import Encrypted from './media/encrypted_code.webp'
 
 import {Scroller, Zone} from './scroller.imba'
 import {Dust} from './dust.imba'
@@ -2600,6 +2600,7 @@ tag Page
 			<Prelaunch>
 			<Soon>
 			<Footer>
+			<img src='./media/encrypted_code.webp' [d: none]>
 
 imba.mount <Page>
 
