@@ -2079,7 +2079,6 @@ tag KeyBurning
 							transform: translateY({(1 - scroller.get('burnSubText')) * 75}px)
 
 tag Clouds
-	videoduration = 0
 	visible
 
 	prop webgl = false
@@ -2091,12 +2090,12 @@ tag Clouds
 	prop geometry
 	prop material
 
-	prop mouseX = 0
-	prop mouseY = 0
+	# prop mouseX = 0
+	# prop mouseY = 0
 	prop start_time = Date.now!
 
-	prop windowHalfX = window.innerWidth / 2
-	prop windowHalfY = window.innerHeight / 2
+	# prop windowHalfX = window.innerWidth / 2
+	# prop windowHalfY = window.innerHeight / 2
 
 	def mount
 		try 
@@ -2168,14 +2167,18 @@ tag Clouds
 		# document.addEventListener('mousemove', onDocumentMouseMove.bind(self))
 		window.addEventListener('resize', onWindowResize.bind(self))
 
-	def onDocumentMouseMove  event
-		mouseX = ( event.clientX - windowHalfX ) * 0.25
-		mouseY = ( event.clientY - windowHalfY ) * 0.15
+	# def onDocumentMouseMove  event
+	# 	mouseX = ( event.clientX - windowHalfX ) * 0.25
+	# 	mouseY = ( event.clientY - windowHalfY ) * 0.15
 
 	def onWindowResize event
+		$cloudcanvas.width = window.innerWidth
+		$cloudcanvas.height = window.innerHeight
+
 		camera.aspect = $cloudcanvas.width / $cloudcanvas.height
 		camera.updateProjectionMatrix!
 		renderer.setSize($cloudcanvas.width, $cloudcanvas.height)
+
 
 	def anim
 		window.requestAnimationFrame(anim.bind(self)) if visible
@@ -2289,8 +2292,8 @@ tag Clouds
 						<Play .spaceship src=prelaunch json=prelaunchjson width=1280 height=1280 ratio=scroller.get('cloudsSpaceship1')>
 						<Play .spaceship src=prelaunch json=prelaunchjson width=1280 height=1280 ratio=scroller.get('cloudsSpaceship2')>
 						<Play .spaceship src=prelaunch json=prelaunchjson width=1280 height=1280 ratio=scroller.get('cloudsSpaceship3')>
-					<$cloudcontainer .clouds>
-						<canvas$cloudcanvas width="{window.innerWidth}" height=screen.height style="object-fit:cover;">
+					<.clouds>
+						<canvas$cloudcanvas width=screen.width height=screen.height>
 
 tag Prelaunch
 	css self
