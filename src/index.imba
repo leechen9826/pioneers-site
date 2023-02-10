@@ -1,10 +1,6 @@
 import {Discord, Twitter, Bracket} from './icons.imba'
 
 // @ts-ignore
-import spaceship-strategy from './media/spaceship-strategy.webm'
-// @ts-ignore
-import spaceship-strategy-poster from './media/spaceship-strategy.webp'
-// @ts-ignore
 import keyA from './media/access-key-a.webp'
 // @ts-ignore
 import keyB from './media/access-key-b.webp'
@@ -33,6 +29,7 @@ import {Scroller, Zone} from './scroller.imba'
 import {Dust} from './dust.imba'
 import {Planet} from './planet.imba'
 import {Play} from './play.imba'
+import {Playloop} from './playloop.imba'
 import {MaskSVG} from './masksvg.imba'
 
 // @ts-ignore
@@ -65,6 +62,9 @@ import prizejson from './json/prize.json'
 // @ts-ignore
 import accesskey from './media/access-key.webp'
 import accesskeyjson from './json/access-key.json'
+// @ts-ignore
+import strategy from './media/strategy.webp'
+import strategyjson from './json/strategy.json'
 
 import clouds from './media/cloud10.png'
 
@@ -977,10 +977,6 @@ tag Strategy
 					@keyframes radar
 						from transform: rotateZ(360deg)
 						to transform: rotateZ(0deg)
-				video
-					zi: 101 w: 100% h: auto
-					# mix-blend-mode: screen
-					-webkit-mix-blend-mode: screen
 				img
 					zi: 100
 					pos: absolute
@@ -1021,8 +1017,11 @@ tag Strategy
 								-webkit-mask-image: linear-gradient(to right, rgba(255,255,255,1) {scroller.get('strategyQuote') * 150 - 50}%, rgba(255,255,255,0) {scroller.get('strategyQuote') * 150}%)
 				<.spaceship-box>
 					<.spaceship>
-						<video src=spaceship-strategy poster=spaceship-strategy-poster autoplay muted loop preload="auto">
+						<Playloop$strategy-box .coins src=strategy json=strategyjson width=350 height=350>
 							css
+								zi: 1
+								w: 100% <350px
+								h: {$strategy-box.clientWidth}px
 								transform: translateY({(0.5 - scroller.get('strategyVideo')) * (self.clientHeight / 2)}px)
 						<svg.circles>
 							css
