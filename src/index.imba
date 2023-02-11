@@ -101,9 +101,10 @@ css html
 		pos: relative
 		m: 0
 		c: #ffffff
-		fs: 64px lh: 72px fw: 700
-		!@640
-			fs: 32px lh: 40px
+		# fs: 64px lh: 72px
+		fs: min(64px, 6.7cqh) !@640: 6cqh !@580: 40px !@420: 32px
+		lh: 1.12em
+		fw: 700
 	h3
 		pos: relative
 		m: 0
@@ -1275,7 +1276,7 @@ tag PioneerAccess
 	css self
 		zi: 105
 		pos: relative
-		w: calc(100% - 320px) <820px !@640: calc(100% - 160px) !@420: calc(100% - 80px)
+		w: calc(100% - 160px) <820px !@640: calc(100% - 160px) !@420: calc(100% - 80px)
 		m: auto
 		mix-blend-mode: screen
 		-webkit-mix-blend-mode: screen
@@ -1292,6 +1293,7 @@ tag PioneerAccess
 			p: 0
 			w: 100%
 			bg: black
+			p: 0 10px
 			mix-blend-mode: screen
 			-webkit-mix-blend-mode: screen
 		.gradient-text
@@ -1498,18 +1500,19 @@ tag AccessKey
 		zi: 105
 		pos: relative
 		d: flex fld: column g: 80px !@420: 40px ai: center
-		mix-blend-mode: lighten
-		-webkit-mix-blend-mode: lighten
-		bg: #120519
+		# mix-blend-mode: lighten
+		# -webkit-mix-blend-mode: lighten
+		# bg: #120519
 		.video-container
 			pos: relative
 			d: flex jc: center ai: start
 			w: 100% h: 190vh
 			mt: -75vh !@420: -50vh
-			mb: -30vh
+			# mb: -30vh
 			.canvas-box
 				pos: sticky t: 0
 				w: 100vw h: 100vh
+				d: flex ja: center
 			.bg-gradient
 				zi: 0
 				pos: absolute l: 0 t: 0 r: 0 b: 0
@@ -1523,7 +1526,7 @@ tag AccessKey
 		.content
 			pos: relative
 			w: calc(100% - 80px) <800px
-			d: flex fld: column g: 40px ai: center
+			d: flex fld: column g: 40px ai: center jc: end
 			ta: center
 		.keys
 			zi: 1
@@ -1634,11 +1637,15 @@ tag AccessKey
 			<.video-container>
 				<.canvas-box>
 					<Play .key-canvas src=accesskey json=accesskeyjson width=1280 height=1280 first=true ratio=scroller.get('keyVideo')>
+						css
+							of: visible
 					<.bg-gradient>
 						css
 							bg: linear-gradient({scroller.get('keyVideo') * 90}deg, #FE039A, #4E01FF)
 							mask-image: linear-gradient({scroller.get('keyGradient')}deg, rgba(255,255,255,0) 45%, rgba(255,255,255,1) 90%)
 			<.content>
+				css
+					mt: calc(-50vh + 200px)
 				<h3$keyTitle> 'Access Key'
 					css
 						o: {scroller.get('keyTitle')}
