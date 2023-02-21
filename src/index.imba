@@ -614,7 +614,7 @@ tag Spaceship
 		scroller.add('spaceshipParam1',		$spaceshipText2,	{view: bottom, gap: (do 300), 	height: (do 200), edge: bottom})
 		scroller.add('spaceshipParam2',		$spaceshipText2,	{view: bottom, gap: (do 300), 	height: (do 200), edge: bottom})
 		scroller.add('spaceshipCloud',		$clouds,			{view: bottom, gap: (do 100), 	height: (do 400), edge: top})
-		scroller.add('spaceshipSpaceship',	$clouds,			{view: bottom, gap: (do 200), 	height: (do 400), edge: top})
+		scroller.add('spaceshipSpaceship',	$clouds,			{view: bottom, gap: (do 0), 	height: (do 400), edge: top})
 
 	def render
 		<self>
